@@ -4,17 +4,14 @@ using namespace std;
 
 int maxBooks(int n, int t, int* a)
 {
-   int l=0, r=0, maxBookCount=0, curCount=0, curSum=0;
-   for(r = 0; r < n; r++){
+   int l=0, maxBookCount=0, curSum=0;
+   for(int r = 0; r < n; r++){
       curSum += *(a+r);
-      curCount++;
-      while(curSum > t && l <= r){
+      while(curSum > t){
          curSum -= *(a+l);
          l++;
-         curCount--;
       }
-
-      maxBookCount = max(maxBookCount, curCount);
+      maxBookCount = max(maxBookCount, r-l+1);
    }
 
    return maxBookCount;
